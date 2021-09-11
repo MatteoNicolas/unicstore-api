@@ -1,12 +1,28 @@
 package com.infratec.unicstore.domain;
 
+import java.io.Serializable;
 import java.util.Objects;
 
-public class Atendente {
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+
+@Entity
+public class Atendente implements Serializable {
+	
+	static final long serialVersionUID = 1L;
+	
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	private String nome_atendente;
 	private Integer cpf_atendente;
-
+	
+	@ManyToOne
+	@JoinColumn(name = "funcionario_id")
 	private Funcionario funcionario;
 
 	public Atendente() {
